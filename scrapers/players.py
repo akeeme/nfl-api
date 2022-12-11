@@ -72,7 +72,7 @@ def get_team_roster(team_route: str) -> pd.DataFrame:
     team_roster = [player_row_cleanse(x.find('td')[0].text.split('\n')[0:8]) for x in team_roster_table]
     
     # storing as pd dataframe for now (might need to push list of lists into db)
-    team_roster = pd.DataFrame(team_roster, columns = ['name', 'number', 'position', 'status', 'height', 'weight', 'experience', 'college'])
+    team_roster = pd.DataFrame(team_roster, columns = ['name', 'jersey_number', 'position', 'status', 'height', 'weight', 'experience', 'college'])
     team_roster['team'] = team_name
     return team_roster
 
