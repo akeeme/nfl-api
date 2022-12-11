@@ -2,3 +2,4 @@
 go.mod
 .ipynb_checkpoints
 *.ipynb
+.env

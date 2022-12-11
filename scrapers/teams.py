@@ -1,13 +1,9 @@
 import json
 import pandas as pd
 import requests_html as rh
-from players import get_team_routes
 
-
-sess = rh.HTMLSession()
 baseUrl = 'https://www.nfl.com'
-team_routes = get_team_routes()
-team_routes = [x + '/' if not x.endswith('/') else x for x in team_routes]
+
 
 def get_team_city(team_name: str) -> str:
     if len(team_name.split(' ')) > 2:
@@ -16,7 +12,6 @@ def get_team_city(team_name: str) -> str:
 
 def get_team_info_standings(r: rh.HTMLResponse) -> object:
     standing = r.html.xpath('//*[@id="main-content"]/div/div/section/div/div/div/div[2]')[0].element.text
-    
     
     class return_vals:
         position = standing.split(' ')[0]
@@ -104,7 +99,7 @@ def get_team_data(team_route: str):
         'website': team_info.website,
         'wins': team_info.wins,
         'losses': team_info.losses,
-        'tie': team_info.tie,
+        'ties': team_info.tie,
         'position': team_info.position,
         'division': team_info.division,
         'coach': team_info.coach,
